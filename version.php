@@ -17,8 +17,8 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage shop_bills
+ * @package    block_shop_products
+ * @category   blocks
  * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2016060500;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014111000;        // Requires this Moodle version
+$plugin->requires  = 2015050500;        // Requires this Moodle version
 $plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics)
-$plugin->maturity = MATURITY_BETA; // Full name of the plugin (used for diagnostics)
-$plugin->release = '2.8.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
+$plugin->maturity = MATURITY_RC; // Maturity level
+$plugin->release = '2.9.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
