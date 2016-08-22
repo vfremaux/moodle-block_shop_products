@@ -17,8 +17,8 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage shop_bills
+ * @package    block_shop_products
+ * @category   blocks
  * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
