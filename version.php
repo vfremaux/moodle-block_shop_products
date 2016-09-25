@@ -15,12 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Version details.
  *
- * @package    block_shop_products
- * @category   blocks
- * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     block_shop_products
+ * @category    blocks
+ * @author      Valery Fremaux <valery.fremaux@gmail.com>
+ * @copyright   2015 Valery Fremaux (http://www.mylearningfactory.com)
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -30,3 +31,6 @@ $plugin->requires  = 2015111000;        // Requires this Moodle version
 $plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics)
 $plugin->maturity = MATURITY_BETA; // Full name of the plugin (used for diagnostics)
 $plugin->release = '3.0.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
+
+// Non moodle attributes.
+$plugin->codeincrement = '3.0.0000';
