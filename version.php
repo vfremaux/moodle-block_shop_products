@@ -17,16 +17,19 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage shop_bills
+ * @package    block_shop_products
+ * @category   blocks
  * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013050300;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2012061700;        // Requires this Moodle version
+$plugin->version   = 2016060500;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->requires  = 2014050800;        // Requires this Moodle version
 $plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics)
 $plugin->maturity = MATURITY_BETA; // Full name of the plugin (used for diagnostics)
-$plugin->release = '2.3.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
+$plugin->release = '2.7.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
+
+// Non moodle attributes.
+$plugin->codeincrement = '2.7.0000';
