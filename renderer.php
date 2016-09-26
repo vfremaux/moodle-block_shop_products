@@ -23,7 +23,7 @@
  * @copyright   2016 onwards Valery Fremaux (http://www.mylearningfactory.com)
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
 class block_shop_products_renderer extends plugin_renderer_base {
 
     public function product_table_wide($theblock, $products) {

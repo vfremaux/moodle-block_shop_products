@@ -38,8 +38,8 @@ class block_shop_products_edit_form extends block_edit_form {
         $mform->setType('config_title', PARAM_MULTILANG);
 
         $shops = $DB->get_records('local_shop');
-        if ($shops){
-            foreach($shops as $sh){
+        if ($shops) {
+            foreach ($shops as $sh) {
                 $opts[$sh->id] = $sh->name;
             }
             $mform->addElement('select', 'config_shopinstance', get_string('configshopinstance', 'block_shop_products'), $opts);
