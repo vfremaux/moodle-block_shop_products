@@ -27,28 +27,28 @@ defined('MOODLE_INTERNAL') || die();
 
 class block_shop_products extends block_base {
 
-    function init() {
+    public function init() {
         $this->title = get_string('blockname', 'block_shop_products');
     }
 
-    function applicable_formats() {
+    public function applicable_formats() {
         return array('all' => false, 'my' => true, 'course' => true);
     }
 
-    function specialization() {
+    public function specialization() {
         return false;
     }
 
-    function instance_allow_multiple() {
+    public function instance_allow_multiple() {
         return true;
     }
 
-    function get_content() {
-        global $USER, $CFG, $DB, $COURSE, $PAGE;
+    public function get_content() {
+        global $USER, $DB, $COURSE, $PAGE;
 
         $renderer = $PAGE->get_renderer('block_shop_products');
 
-        if ($this->content !== NULL) {
+        if ($this->content !== null) {
             return $this->content;
         }
 
@@ -85,12 +85,12 @@ class block_shop_products extends block_base {
                 cp.id = pe.productid AND
                 bi.id = pe.billitemid AND
                 cp.customerid = c.id AND
-                c.hasaccount = {$USER->id}
+                c.hasaccount = ?
             ORDER BY
                 cp.startdate DESC
         ";
 
-        if ($products = $DB->get_records_sql($sql)) {
+        if ($products = $DB->get_records_sql($sql, array($USER->id))) {
             $wide = false;
 
             // check we are not in central position of a page format
@@ -116,22 +116,22 @@ class block_shop_products extends block_base {
             $this->content->text = get_string('noproducts', 'block_shop_products');
         }
 
-        unset($filteropt); // memory footprint
-
         return $this->content;
     }
 
     /*
      * Hide the title bar when none set..
      */
-    function hide_header() {
+    public function hide_header() {
         return empty($this->config->title);
     }
 
-    function get_context_product_info($product){
+    public function get_context_product_info($product) {
         global $DB, $OUTPUT;
 
-        if (empty($product->instanceid)) return '';
+        if (empty($product->instanceid)) {
+            return '';
+        }
 
         $str = '';
         switch ($product->contexttype) {

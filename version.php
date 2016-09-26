@@ -26,11 +26,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016060500;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014111000;        // Requires this Moodle version
-$plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics)
-$plugin->maturity = MATURITY_BETA; // Full name of the plugin (used for diagnostics)
-$plugin->release = '2.8.0 (Build 2013050300)'; // Full name of the plugin (used for diagnostics)
+$plugin->version   = 2016060500;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2014111000;        // Requires this Moodle version.
+$plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics).
+$plugin->maturity = MATURITY_RC;
+$plugin->release = '2.8.0 (Build 2013050300)';
 
-// Non Moodle attributes.
+// Non moodle attributes.
 $plugin->codeincrement = '2.8.0002';
