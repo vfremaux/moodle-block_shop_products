@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Form for editing block shop_products instances.
+ * Products view.
  *
  * @package   block_shop_products
  * @category  blocks
@@ -39,8 +39,8 @@ use local_shop\Bill;
 use local_shop\Shop;
 
 $productid = required_param('pid', PARAM_INT);
-$id = required_param('id', PARAM_INT); // the block id
-$shopid = required_param('shopid', PARAM_INT); // the shop id
+$id = required_param('id', PARAM_INT); // The block id.
+$shopid = required_param('shopid', PARAM_INT); // The shop id.
 
 try {
     $product = new Product($productid);
@@ -58,11 +58,11 @@ if (!$instance = $DB->get_record('block_instances', array('id' => $id))) {
     print_error('badblockinstance', 'block_shop_products');
 }
 
-$theBlock = block_instance('shop_products', $instance);
-$theShop = new Shop($shopid);
+$theblock = block_instance('shop_products', $instance);
+$theshop = new Shop($shopid);
 
-// Get and check course from block context
-if (!$course = $DB->get_record('course', array('id' => $theBlock->context->instanceid))) {
+// Get and check course from block context.
+if (!$course = $DB->get_record('course', array('id' => $theblock->context->instanceid))) {
     print_error('coursemisconf');
 }
 
@@ -94,9 +94,21 @@ echo '</p>';
 
 echo $OUTPUT->heading(get_string('product', 'block_shop_products'), 3);
 echo $OUTPUT->box_start('block-shop-product-ref-box block');
-echo '<div><div class="cs-product-key">'.get_string('reference', 'block_shop_products').'</div><div class="cs-product-value monospace">'.$product->reference.'</div></div>';
-echo '<div><div class="cs-product-key">'.get_string('startdate', 'block_shop_products').'</div><div class="cs-product-value">'.userdate($product->startdate).'</div></div>';
-echo '<div><div class="cs-product-key">'.get_string('enddate', 'block_shop_products').'</div><div class="cs-product-value">'.userdate($product->enddate).'</div></div>';
+
+echo '<div>';
+echo '<div class="cs-product-key">'.get_string('reference', 'block_shop_products').'</div>';
+echo '<div class="cs-product-value monospace">'.$product->reference.'</div>';
+echo '</div>';
+
+echo '<div>';
+echo '<div class="cs-product-key">'.get_string('startdate', 'block_shop_products').'</div>';
+echo '<div class="cs-product-value">'.userdate($product->startdate).'</div>';
+echo '</div>';
+
+echo '<div>';
+echo '<div class="cs-product-key">'.get_string('enddate', 'block_shop_products').'</div>';
+echo '<div class="cs-product-value">'.userdate($product->enddate).'</div>';
+echo '</div>';
 echo $OUTPUT->box_end();
 
 echo $OUTPUT->heading(get_string('production', 'block_shop_products'), 3);
@@ -108,15 +120,14 @@ echo $OUTPUT->heading(get_string('purchase', 'block_shop_products'), 3);
 $productevents = $DB->get_records('local_shop_productevent', array('productid' => $product->id));
 echo $OUTPUT->box_start('cs-product-billinfo-box block');
 
-print_object($product);
-
-$bill = new Bill($product->initialbillid, $theShop);
+$bill = new Bill($product->initialbillid, $theshop);
 
 if ($productevents) {
     foreach ($productevents as $pe) {
         $bi = new BillItem($pe->billitemid, $bill);
         $catalogitem = unserialize(base64_decode($bi->catalogitem));
-        echo '<p><div class="cs-product-bill">'.$bill->title.'</div><div class="cs-product-date">'.userdate($bill->emissiondate).'</div></p>';
+        echo '<p><div class="cs-product-bill">'.$bill->title.'</div>';
+        echo '<div class="cs-product-date">'.userdate($bill->emissiondate).'</div></p>';
         echo '<p><div class="cs-product-billitem">['.$catalogitem->code.']</div> ';
         echo '<div class="cs-product-billitem">'.$catalogitem->name.'</div></p>';
         echo '<div><div class="cs-product-key">'.get_string('quantity', 'block_shop').'</div>';
