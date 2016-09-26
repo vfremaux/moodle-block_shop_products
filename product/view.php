@@ -39,7 +39,7 @@ use local_shop\Bill;
 use local_shop\Shop;
 
 $productid = required_param('pid', PARAM_INT);
-$id = required_param('id', PARAM_INT); // The block id.
+$blockid = required_param('blockid', PARAM_INT); // The shop_product block id.
 $shopid = required_param('shopid', PARAM_INT); // The shop id.
 
 try {
@@ -54,7 +54,7 @@ try {
     print_error('objectexception', 'block_shop_products', $e->message);
 }
 
-if (!$instance = $DB->get_record('block_instances', array('id' => $id))) {
+if (!$instance = $DB->get_record('block_instances', array('id' => $blockid))) {
     print_error('badblockinstance', 'block_shop_products');
 }
 
