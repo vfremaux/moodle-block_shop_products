@@ -40,8 +40,11 @@ class block_shop_products_renderer extends plugin_renderer_base {
         $expiredcount = 0;
 
         $producttable = new html_table();
-        $producttable->head = array("<b>$pidstr</b>", "<b>$startdatestr</b>", "<b>$enddatestr</b>",
-            "<b>$productlinkstr</b>", "<b>$statusstr</b>");
+        $producttable->head = array("<b>$pidstr</b>",
+                                    "<b>$startdatestr</b>",
+                                    "<b>$enddatestr</b>",
+                                    "<b>$productlinkstr</b>",
+                                    "<b>$statusstr</b>");
         $producttable->width = '100%';
         $producttable->size = array('10%', '10%', '10%', '40%', '30%');
         $producttable->align = array('left', 'left', 'left', 'left', 'right');
@@ -56,17 +59,22 @@ class block_shop_products_renderer extends plugin_renderer_base {
             $purl = new moodle_url('/blocks/shop_products/product/view.php', $params);
             $status = '';
             $productext = $theblock->get_context_product_info($p);
+            $now = time();
             if ($p->renewable) {
-                $pend = ($p->enddate) ? date('Y/m/d h:i', $p->enddate) : 'N.C.';
-                if (time() > $p->enddate) {
+                $pend = ($p->enddate) ? date('Y/m/d H:i', $p->enddate) : 'N.C.';
+                if ($now > $p->enddate) {
                     // Expired.
                     $status = '<span class="cs-product-expired">'.get_string('expired', 'block_shop_products').'</span>';
                     $pend = '<span class="cs-product-expireddate">'.$pend.'</span>';
                     $expiredcount++;
-                } else if (time() > $p->enddate - DAYSECS * 3) {
+                } else if ($now > $p->enddate - DAYSECS * 3) {
                     // Expiring.
                     $status = '<span class="cs-product-expiring">'.get_string('expiring', 'block_shop_products').'</span>';
                     $pend = '<span class="cs-product-expiringdate">'.$pend.'</span>';
+                } else if ($now > $p->startdate) {
+                    // Pending to start.
+                    $status = '<span class="cs-product-pending">'.get_string('pending', 'block_shop_products').'</span>';
+                    $pend = '<span class="cs-product-pendingdate">'.$pend.'</span>';
                 } else {
                     // Running.
                     $status = '<span class="cs-product-running">'.get_string('running', 'block_shop_products').'</span>';
