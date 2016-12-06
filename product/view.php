@@ -38,6 +38,7 @@ use local_shop\BillItem;
 use local_shop\Bill;
 use local_shop\Shop;
 
+$id = required_param('id', PARAM_INT); // Course id.
 $productid = required_param('pid', PARAM_INT);
 $blockid = required_param('blockid', PARAM_INT); // The shop_product block id.
 $shopid = required_param('shopid', PARAM_INT); // The shop id.
@@ -62,13 +63,14 @@ $theblock = block_instance('shop_products', $instance);
 $theshop = new Shop($shopid);
 
 // Get and check course from block context.
-if (!$course = $DB->get_record('course', array('id' => $theblock->context->instanceid))) {
+if (!$course = $DB->get_record('course', array('id' => $id))) {
     print_error('coursemisconf');
 }
 
 require_course_login($course);
 
-$url = new moodle_url('/blocks/shop_products/products/view.php', array('id' => $id, 'productid' => $productid));
+$params = array('id' => $id, 'shopid' => $theshop->id, 'blockid' => $blockid, 'pid' => $productid);
+$url = new moodle_url('/blocks/shop_products/product/view.php', $params);
 $PAGE->set_url($url);
 $context = context_course::instance($course->id);
 $PAGE->set_context($context);
@@ -120,29 +122,33 @@ echo $OUTPUT->heading(get_string('purchase', 'block_shop_products'), 3);
 $productevents = $DB->get_records('local_shop_productevent', array('productid' => $product->id));
 echo $OUTPUT->box_start('cs-product-billinfo-box block');
 
-$bill = new Bill($product->initialbillid, $theshop);
-
 if ($productevents) {
     foreach ($productevents as $pe) {
         $bi = new BillItem($pe->billitemid, $bill);
-        $catalogitem = unserialize(base64_decode($bi->catalogitem));
+        $bill = new Bill($bi->billid, $theshop);
         echo '<p><div class="cs-product-bill">'.$bill->title.'</div>';
         echo '<div class="cs-product-date">'.userdate($bill->emissiondate).'</div></p>';
-        echo '<p><div class="cs-product-billitem">['.$catalogitem->code.']</div> ';
-        echo '<div class="cs-product-billitem">'.$catalogitem->name.'</div></p>';
-        echo '<div><div class="cs-product-key">'.get_string('quantity', 'block_shop').'</div>';
+        echo '<p><div class="cs-product-billitem">['.$bi->catalogitem->code.']</div> ';
+        echo '<div class="cs-product-billitem">'.$bi->catalogitem->name.'</div></p>';
+        echo '<div><div class="cs-product-key">'.get_string('quantity', 'block_shop_products').'</div>';
         echo '<div class="cs-product-value">'.$bi->quantity.'</div></div>';
-        echo '<div><div class="cs-product-key">'.get_string('unitprice', 'block_shop').'</div>';
+        echo '<div><div class="cs-product-key">'.get_string('unitprice', 'block_shop_products').'</div>';
         echo '<div class="cs-product-value">'.sprintf('%0.2f', $bi->unitcost).' '.$bill->currency.'</div></div>';
     }
 }
 echo $OUTPUT->box_end();
 
-
-echo $OUTPUT->heading(get_string('manage', 'block_shop_products'), 3);
-echo $OUTPUT->box_start('cs-action-box block');
-echo $handler->display_product_actions($productid, $productinfo);
-echo $OUTPUT->box_end();
+if (method_exists($handler, 'display_product_actions')) {
+    echo $OUTPUT->heading(get_string('manage', 'block_shop_products'), 3);
+    echo $OUTPUT->box_start('cs-action-box block');
+    echo $handler->display_product_actions($productid, $productinfo);
+    echo $OUTPUT->box_end();
+} else {
+    echo $OUTPUT->heading(get_string('manage', 'block_shop_products'), 3);
+    echo $OUTPUT->box_start('cs-action-box block');
+    echo get_string('noactions', 'block_shop_products');
+    echo $OUTPUT->box_end();
+}
 
 echo '<p></p>';
 
