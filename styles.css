@@ -1,76 +1,87 @@
 .cs-product-expired{
-	background-color:#F00000;
-	color:white;
-	font-weight:bolder;
-	padding:3px;
+    background-color:#FF8080;
+    color:white;
+    font-weight:bolder;
+    padding:3px;
 }
 
 .cs-product-expireddate{
-	color:#F00000;
+    color:#F00000;
 }
 
 .cs-product-expiring{
-	background-color:#F08000;
-	color:white;
-	font-weight:bolder;
-	padding:3px;
+    background-color:#F0A040;
+    color:white;
+    font-weight:bolder;
+    padding:3px;
 }
 
 .cs-product-expiringdate{
-	color:#F08000;
+    color:#F08000;
+}
+
+.cs-product-pending{
+    background-color:#A9DEBE;
+    color:white;
+    font-weight:bolder;
+    padding:3px;
+}
+
+.cs-product-pendingdate{
+    color:#4AA68A;
 }
 
 .cs-product-running{
-	background-color:#00A000;
-	color:white;
-	font-weight:bolder;
-	padding:3px;
+    background-color:#60B060;
+    color:white;
+    font-weight:bolder;
+    padding:3px;
+}
+
+.cs-product-runningdate{
+    color:#00A000;
 }
 
 .cs-product-unused{
-	background-color:#BDC4D9;
-	color:#51608C;
-	font-weight:bolder;
-	padding:3px;
-}
-
-.cs-product-expiringdate{
-	color:#00A000;
+    background-color:#BDC4D9;
+    color:#51608C;
+    font-weight:bolder;
+    padding:3px;
 }
 
 .cs-product-code{
-	font-family:monospace;
+    font-family:monospace;
 }
 
 .cs-product-key{
-	display:table-cell;
-	font-weight:bolder;
-	width:150px;
-	padding:3px;
+    display:table-cell;
+    font-weight:bolder;
+    width:150px;
+    padding:3px;
 }
 
 .cs-product-value{
-	display:table-cell;
-	font-weight:normal;
-	width:70%;
-	padding:3px;
+    display:table-cell;
+    font-weight:normal;
+    width:70%;
+    padding:3px;
 }
 
 .cs-product-value.monospace{
-	font-family:monospace;
+    font-family:monospace;
 }
 
 .cs-product-bill{
-	font-size:2.5em;
-	line-height:2.2em;
+    font-size:2.5em;
+    line-height:2.2em;
 }
 
 .cs-product-date{
 }
 
 .cs-product-billitem{
-	display:table-cell;
-	font-size:1.5em;
-	line-height:1.2em;
+    display:table-cell;
+    font-size:1.5em;
+    line-height:1.2em;
 }
 
