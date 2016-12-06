@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Capability definitions for the inwicast module.
  *
@@ -24,6 +22,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2013 Valery Fremaux (valery.fremaux@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die();
 
 class block_shop_products extends block_base {
 
@@ -93,7 +92,7 @@ class block_shop_products extends block_base {
         if ($products = $DB->get_records_sql($sql, array($USER->id))) {
             $wide = false;
 
-            // check we are not in central position of a page format
+            // Check we are not in central position of a page format.
             if ($COURSE->format == 'page') {
                 $blockposition = $DB->get_record('block_positions', array('blockinstanceid' => $this->instance->id));
                 if (!$blockposition) {
