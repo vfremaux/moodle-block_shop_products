@@ -124,7 +124,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
         $producttable->align = array('left', 'right');
 
         foreach ($products as $p) {
-            $pstart = ($p->startdate) ? date('Y/m/d h:i', $p->startdate) : 'N.C.';
+            $pstart = ($p->startdate) ? date('Y/m/d H:i', $p->startdate) : 'N.C.';
             $pstr = '['.$p->code.'] '.$p->name;
             $params = array('id' => $COURSE->id,
                             'shopid' => $theblock->config->shopinstance,
@@ -133,7 +133,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
             $purl = new moodle_url('/blocks/shop_products/product/view.php', $params);
             $status = '';
             if ($p->renewable) {
-                $pend = ($p->enddate) ? date('Y/m/d h:i', $p->enddate) : 'N.C.';
+                $pend = ($p->enddate) ? date('Y/m/d H:i', $p->enddate) : 'N.C.';
                 if (time() > $p->enddate) {
                     // Expired.
                     $status = '<span class="cs-product-expired">'.get_string('expired', 'block_shop_products').'</span>';
