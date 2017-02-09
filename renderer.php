@@ -71,7 +71,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
                     // Expiring.
                     $status = '<span class="cs-product-expiring">'.get_string('expiring', 'block_shop_products').'</span>';
                     $pend = '<span class="cs-product-expiringdate">'.$pend.'</span>';
-                } else if ($now > $p->startdate) {
+                } else if ($now < $p->startdate) {
                     // Pending to start.
                     $status = '<span class="cs-product-pending">'.get_string('pending', 'block_shop_products').'</span>';
                     $pend = '<span class="cs-product-pendingdate">'.$pend.'</span>';
