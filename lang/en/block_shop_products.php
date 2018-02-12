@@ -24,8 +24,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['shop_products:addinstance'] = 'Can add an instance';
-$string['shop_products:myaddinstance'] = 'Can add an instance to My Page';
+$string['shop_products:addinstance'] = 'Add an instance';
+$string['shop_products:myaddinstance'] = 'Add an instance to My Page';
 
 $string['assignedto'] = '<b>Assigned to:</b> {$a}';
 $string['available'] = 'Available';
@@ -36,7 +36,7 @@ $string['enabledcourses'] = 'Enabled courses';
 $string['enddate'] = 'End date';
 $string['expired'] = 'Expired';
 $string['expiring'] = 'Expiring';
-$string['incourse'] = '<b>In course:</b> [{$a->shortname}] {$a->fullname}';
+$string['incourse'] = '<b>In course:</b> [{$a->shortname}] {$a->full name}';
 $string['leaveblanktohide'] = 'Leave blank to hide';
 $string['manage'] = 'Manage this product';
 $string['noactions'] = 'No actions available for this product';
@@ -48,11 +48,11 @@ $string['pid'] = 'PID';
 $string['pluginname'] = 'My products';
 $string['product'] = 'Product';
 $string['productinstance'] = 'Product: {$a}';
-$string['production'] = 'Product Specialisation';
+$string['production'] = 'Product specifics';
 $string['purchase'] = 'Purchase info';
 $string['quantity'] = 'quantity';
-$string['reference'] = 'Product Reference';
-$string['running'] = 'Running';
+$string['reference'] = 'Product reference';
+$string['running'] = 'Under way';
 $string['startdate'] = 'Start date';
 $string['status'] = 'Status';
 $string['unitprice'] = 'Unit price';
