@@ -27,6 +27,9 @@
 $string['shop_products:addinstance'] = 'Add an instance';
 $string['shop_products:myaddinstance'] = 'Add an instance to My Page';
 
+// Privacy.
+$string['privacy:metadata'] = "The Shop Product Block does not directely store any data belonging to users";
+
 $string['assignedto'] = '<b>Assigned to:</b> {$a}';
 $string['available'] = 'Available';
 $string['blockname'] = 'My products';
