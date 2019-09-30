@@ -1,87 +1,86 @@
-.cs-product-expired{
-    background-color:#FF8080;
-    color:white;
-    font-weight:bolder;
-    padding:3px;
+.cs-product-expired {
+    background-color: #ff8080;
+    color: white;
+    font-weight: bolder;
+    padding: 3px;
 }
 
-.cs-product-expireddate{
-    color:#F00000;
+.cs-product-expireddate {
+    color: #f00000;
 }
 
-.cs-product-expiring{
-    background-color:#F0A040;
-    color:white;
-    font-weight:bolder;
-    padding:3px;
+.cs-product-expiring {
+    background-color: #f0a040;
+    color: white;
+    font-weight: bolder;
+    padding: 3px;
 }
 
-.cs-product-expiringdate{
-    color:#F08000;
+.cs-product-expiringdate {
+    color: #f08000;
 }
 
-.cs-product-pending{
-    background-color:#A9DEBE;
-    color:white;
-    font-weight:bolder;
-    padding:3px;
+.cs-product-pending {
+    background-color: #a9debe;
+    color: white;
+    font-weight: bolder;
+    padding: 3px;
 }
 
-.cs-product-pendingdate{
-    color:#4AA68A;
+.cs-product-pendingdate {
+    color: #4aa68a;
 }
 
-.cs-product-running{
-    background-color:#60B060;
-    color:white;
-    font-weight:bolder;
-    padding:3px;
+.cs-product-running {
+    background-color: #60B060;
+    color: white;
+    font-weight: bolder;
+    padding: 3px;
 }
 
-.cs-product-runningdate{
-    color:#00A000;
+.cs-product-runningdate {
+    color: #00a000;
 }
 
-.cs-product-unused{
-    background-color:#BDC4D9;
-    color:#51608C;
-    font-weight:bolder;
-    padding:3px;
+.cs-product-unused {
+    background-color:#bdc4d9;
+    color: #51608c;
+    font-weight: bolder;
+    padding: 3px;
 }
 
-.cs-product-code{
-    font-family:monospace;
+.cs-product-code {
+    font-family: monospace;
 }
 
-.cs-product-key{
-    display:table-cell;
-    font-weight:bolder;
-    width:150px;
-    padding:3px;
+.cs-product-key {
+    display: table-cell;
+    font-weight: bolder;
+    width: 150px;
+    padding: 3px;
 }
 
-.cs-product-value{
-    display:table-cell;
-    font-weight:normal;
-    width:70%;
-    padding:3px;
+.cs-product-value {
+    display: table-cell;
+    font-weight: normal;
+    width: 70%;
+    padding: 3px;
 }
 
-.cs-product-value.monospace{
-    font-family:monospace;
+.cs-product-value.monospace {
+    font-family: monospace;
 }
 
-.cs-product-bill{
-    font-size:2.5em;
-    line-height:2.2em;
+.cs-product-bill {
+    font-size: 2.5em;
+    line-height: 2.2em;
 }
 
-.cs-product-date{
+.cs-product-date {
 }
 
-.cs-product-billitem{
-    display:table-cell;
-    font-size:1.5em;
-    line-height:1.2em;
+.cs-product-billitem {
+    display: table-cell;
+    font-size: 1.5em;
+    line-height: 1.2em;
 }
-
