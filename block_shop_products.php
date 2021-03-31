@@ -78,18 +78,21 @@ class block_shop_products extends block_base {
                 {local_shop_catalogitem} ci,
                 {local_shop_productevent} pe,
                 {local_shop_billitem} bi,
+                {local_shop_bill} b,
                 {local_shop_customer} c
             WHERE
                 cp.catalogitemid = ci.id AND
                 cp.id = pe.productid AND
                 bi.id = pe.billitemid AND
+                bi.billid = b.id AND
                 cp.customerid = c.id AND
-                c.hasaccount = ?
+                c.hasaccount = ? AND
+                b.shopid = ?
             ORDER BY
                 cp.startdate DESC
         ";
 
-        if ($products = $DB->get_records_sql($sql, array($USER->id))) {
+        if ($products = $DB->get_records_sql($sql, array($USER->id, $this->config->shopinstance))) {
             $wide = false;
 
             // Check we are not in central position of a page format.
