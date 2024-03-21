@@ -30,8 +30,8 @@ $plugin->version   = 2016060500;        // The current plugin version (Date: YYY
 $plugin->requires  = 2020060900;        // Requires this Moodle version.
 $plugin->component = 'block_shop_products'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity = MATURITY_STABLE;
-$plugin->supported = [39,311];
 $plugin->release = '3.9.0 (Build 2016060500)';
+$plugin->supported = [39, 311];
 $plugin->dependencies = ['local_shop' => 2022090900];
 
 // Non moodle attributes.
