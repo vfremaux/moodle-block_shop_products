@@ -18,15 +18,20 @@
  * Form for editing block shop_products instances.
  *
  * @package   block_shop_products
- * @category  blocks
- * @copyright 2013 Valery Fremaux (valery.fremaux@gmail.com)
+ * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @copyright   2016 Valery Fremaux (valery.fremaux@gmail.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Instance edition form
+ */
 class block_shop_products_edit_form extends block_edit_form {
 
+    /**
+     * Specific definition
+     * @param moodle_form $mform
+     */
     protected function specific_definition($mform) {
         global $DB;
 

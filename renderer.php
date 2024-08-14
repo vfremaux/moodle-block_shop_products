@@ -18,14 +18,21 @@
  * Block's renderer.
  *
  * @package     block_shop_products
- * @category    blocks
- * @author      Valery Fremaux <valery.fremaux@gmail.com>
- * @copyright   2016 onwards Valery Fremaux (http://www.mylearningfactory.com)
+ * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @copyright   2016 Valery Fremaux (valery.fremaux@gmail.com)
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * Renderer class
+ */
 class block_shop_products_renderer extends plugin_renderer_base {
 
+    /**
+     * Prints a priduct table
+     * @param object $theblock
+     * @param array $products
+     */
     public function product_table_wide($theblock, $products) {
         global $COURSE;
 
@@ -40,22 +47,26 @@ class block_shop_products_renderer extends plugin_renderer_base {
         $expiredcount = 0;
 
         $producttable = new html_table();
-        $producttable->head = array("<b>$pidstr</b>",
-                                    "<b>$startdatestr</b>",
-                                    "<b>$enddatestr</b>",
-                                    "<b>$productlinkstr</b>",
-                                    "<b>$statusstr</b>");
+        $producttable->head = [
+            "<b>$pidstr</b>",
+            "<b>$startdatestr</b>",
+            "<b>$enddatestr</b>",
+            "<b>$productlinkstr</b>",
+            "<b>$statusstr</b>",
+        ];
         $producttable->width = '100%';
-        $producttable->size = array('10%', '10%', '10%', '40%', '30%');
-        $producttable->align = array('left', 'left', 'left', 'left', 'right');
+        $producttable->size = ['10%', '10%', '10%', '40%', '30%'];
+        $producttable->align = ['left', 'left', 'left', 'left', 'right'];
 
         foreach ($products as $p) {
             $pstart = ($p->startdate) ? date('Y/m/d H:i', $p->startdate) : 'N.C.';
             $pstr = '['.$p->code.'] '.$p->name;
-            $params = array('id' => $COURSE->id,
-                            'shopid' => $theblock->config->shopinstance,
-                            'blockid' => $theblock->instance->id,
-                            'pid' => $p->id);
+            $params = [
+                'id' => $COURSE->id,
+                'shopid' => $theblock->config->shopinstance,
+                'blockid' => $theblock->instance->id,
+                'pid' => $p->id,
+            ];
             $purl = new moodle_url('/blocks/shop_products/product/view.php', $params);
             $status = '';
             $productext = $theblock->get_context_product_info($p);
@@ -107,6 +118,11 @@ class block_shop_products_renderer extends plugin_renderer_base {
         return $str;
     }
 
+    /**
+     * Prints a narrow layout of the product table
+     * @param object $theblock
+     * @param array $products
+     */
     public function product_table_narrow($theblock, $products) {
         global $COURSE;
 
@@ -118,18 +134,20 @@ class block_shop_products_renderer extends plugin_renderer_base {
         $expiredcount = 0;
 
         $producttable = new html_table();
-        $producttable->head = array("<b>$productlinkstr</b>", "<b>$statusstr</b>");
+        $producttable->head = ["<b>$productlinkstr</b>", "<b>$statusstr</b>"];
         $producttable->width = '100%';
-        $producttable->size = array('70%', '30%');
-        $producttable->align = array('left', 'right');
+        $producttable->size = ['70%', '30%'];
+        $producttable->align = ['left', 'right'];
 
         foreach ($products as $p) {
             $pstart = ($p->startdate) ? date('Y/m/d H:i', $p->startdate) : 'N.C.';
             $pstr = '['.$p->code.'] '.$p->name;
-            $params = array('id' => $COURSE->id,
-                            'shopid' => $theblock->config->shopinstance,
-                            'blockid' => 0 + @$theblock->instance->id,
-                            'pid' => $p->id);
+            $params = [
+                'id' => $COURSE->id,
+                'shopid' => $theblock->config->shopinstance,
+                'blockid' => 0 + @$theblock->instance->id,
+                'pid' => $p->id,
+            ];
             $purl = new moodle_url('/blocks/shop_products/product/view.php', $params);
             $status = '';
             if ($p->renewable) {
@@ -160,7 +178,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
                     $status = '<span class="cs-product-unused">'.get_string('available', 'block_shop_products').'</span>';
                     $availablecount++;
                 }
-                $producttable->data[] = array('<a href="'.$purl.'" title="'.$p->reference.'">'.$pstr.'</a><br/>'.$pstart, $status);
+                $producttable->data[] = ['<a href="'.$purl.'" title="'.$p->reference.'">'.$pstr.'</a><br/>'.$pstart, $status];
             }
         }
 

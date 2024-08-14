@@ -15,33 +15,50 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Capability definitions for the inwicast module.
+ * Block main class
  *
  * @package    block_shop_products
- * @category   blocks
- * @copyright  2013 Valery Fremaux (valery.fremaux@gmail.com)
+ * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @copyright   2016 Valery Fremaux (valery.fremaux@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Block main class
+ */
 class block_shop_products extends block_base {
 
+    /**
+     * Standard init
+     */
     public function init() {
         $this->title = get_string('blockname', 'block_shop_products');
     }
 
+    /**
+     * Applicable format
+     */
     public function applicable_formats() {
-        return array('all' => false, 'my' => true, 'course' => true);
+        return ['all' => false, 'my' => true, 'course' => true];
     }
 
+    /**
+     * Instance specialisation
+     */
     public function specialization() {
         return false;
     }
 
+    /**
+     * Can we have multiple instances in context ? 
+     */
     public function instance_allow_multiple() {
         return true;
     }
 
+    /**
+     * Main content
+     */
     public function get_content() {
         global $USER, $DB, $COURSE, $PAGE;
 
@@ -89,12 +106,12 @@ class block_shop_products extends block_base {
                 cp.startdate DESC
         ";
 
-        if ($products = $DB->get_records_sql($sql, array($USER->id))) {
+        if ($products = $DB->get_records_sql($sql, [$USER->id])) {
             $wide = false;
 
             // Check we are not in central position of a page format.
             if ($COURSE->format == 'page') {
-                $blockposition = $DB->get_record('block_positions', array('blockinstanceid' => $this->instance->id));
+                $blockposition = $DB->get_record('block_positions', ['blockinstanceid' => $this->instance->id]);
                 if (!$blockposition) {
                     if ($this->defaultregion == 'main') {
                         $wide = true;
@@ -118,13 +135,17 @@ class block_shop_products extends block_base {
         return $this->content;
     }
 
-    /*
+    /**
      * Hide the title bar when none set..
      */
     public function hide_header() {
         return empty($this->config->title);
     }
 
+    /**
+     * Get info on product
+     * @param object $product
+     */
     public function get_context_product_info($product) {
         global $DB, $OUTPUT;
 
@@ -135,10 +156,10 @@ class block_shop_products extends block_base {
         $str = '';
         switch ($product->contexttype) {
             case 'user_enrolment':
-                $ue = $DB->get_record('user_enrolments', array('id' => $product->instanceid));
-                $user = $DB->get_record('user', array('id' => $ue->userid));
-                $courseid = $DB->get_field('enrol', 'courseid', array('id' => $ue->enrolid));
-                $course = $DB->get_record('course', array('id' => $courseid), 'id,shortname,fullname');
+                $ue = $DB->get_record('user_enrolments', ['id' => $product->instanceid]);
+                $user = $DB->get_record('user', ['id' => $ue->userid]);
+                $courseid = $DB->get_field('enrol', 'courseid', ['id' => $ue->enrolid]);
+                $course = $DB->get_record('course', ['id' => $courseid], 'id,shortname,fullname');
                 $str .= $OUTPUT->box_start();
                 $str .= get_string('assignedto', 'block_shop_products', fullname($user));
                 $str .= '<br/>';
@@ -148,4 +169,3 @@ class block_shop_products extends block_base {
         return $str;
     }
 }
-

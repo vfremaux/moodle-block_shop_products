@@ -14,12 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * General library
+ *
+ * @package     block_products
+ * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @copyright   2016 Valery Fremaux (valery.fremaux@gmail.com)
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * This function is not implemented in this plugin, but is needed to mark
  * the vf documentation custom volume availability.
+ * @param string $feature
+ * @param bool $getsupported
  */
-function block_shop_products_supports_feature($feature) {
+function block_shop_products_supports_feature($feature = null, $getsupported = false) {
     assert(1);
 }

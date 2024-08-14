@@ -15,12 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Products view.
+ * Product view.
  *
  * @package   block_shop_products
  * @category  blocks
  * @copyright 2013 Valery Fremaux (valery.fremaux@gmail.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @todo : templatize
  */
 
 require('../../../config.php');
@@ -46,30 +47,30 @@ $shopid = required_param('shopid', PARAM_INT); // The shop id.
 try {
     $product = new Product($productid);
 } catch (Exception $e) {
-    print_error('objectexception', 'block_shop_products', $e->message);
+    throw new moodle_exception('objectexception', 'block_shop_products', $e->message);
 }
 
 try {
     $catalogitem = new CatalogItem($product->catalogitemid);
 } catch (Exception $e) {
-    print_error('objectexception', 'block_shop_products', $e->message);
+    throw new moodle_exception('objectexception', 'block_shop_products', $e->message);
 }
 
-if (!$instance = $DB->get_record('block_instances', array('id' => $blockid))) {
-    print_error('badblockinstance', 'block_shop_products');
+if (!$instance = $DB->get_record('block_instances', ['id' => $blockid])) {
+    throw new moodle_exception('badblockinstance', 'block_shop_products');
 }
 
 $theblock = block_instance('shop_products', $instance);
 $theshop = new Shop($shopid);
 
 // Get and check course from block context.
-if (!$course = $DB->get_record('course', array('id' => $id))) {
-    print_error('coursemisconf');
+if (!$course = $DB->get_record('course', ['id' => $id])) {
+    throw new moodle_exception('coursemisconf');
 }
 
 require_course_login($course);
 
-$params = array('id' => $id, 'shopid' => $theshop->id, 'blockid' => $blockid, 'pid' => $productid);
+$params = ['id' => $id, 'shopid' => $theshop->id, 'blockid' => $blockid, 'pid' => $productid];
 $url = new moodle_url('/blocks/shop_products/product/view.php', $params);
 $PAGE->set_url($url);
 $context = context_course::instance($course->id);
