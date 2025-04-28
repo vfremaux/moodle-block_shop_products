@@ -50,7 +50,7 @@ class block_shop_products extends block_base {
     }
 
     /**
-     * Can we have multiple instances in context ? 
+     * Can we have multiple instances in context ?
      */
     public function instance_allow_multiple() {
         return true;
@@ -60,9 +60,9 @@ class block_shop_products extends block_base {
      * Main content
      */
     public function get_content() {
-        global $USER, $DB, $COURSE, $PAGE;
+        global $USER, $DB, $COURSE;
 
-        $renderer = $PAGE->get_renderer('block_shop_products');
+        $renderer = $this->page->get_renderer('block_shop_products');
 
         if ($this->content !== null) {
             return $this->content;

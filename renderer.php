@@ -93,7 +93,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
                     $runningcount++;
                 }
                 $productline = '<span class="cs-product-code">['.$p->reference.']</span>'.$productext;
-                $producttable->data[] = array($productline, $pstart, $pend, '<a href="'.$purl.'">'.$pstr.'</a>', $status);
+                $producttable->data[] = [$productline, $pstart, $pend, '<a href="'.$purl.'">'.$pstr.'</a>', $status];
             } else {
                 if ($p->instanceid) {
                     $status = '<span class="cs-product-running">'.get_string('running', 'block_shop_products').'</span>';
@@ -103,7 +103,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
                     $availablecount++;
                 }
                 $productline = '<span class="cs-product-code">['.$p->reference.']</span>'.$productext;
-                $producttable->data[] = array($productline, $pstart, 'N.C.', '<a href="'.$purl.'">'.$pstr.'</a>', $status);
+                $producttable->data[] = [$productline, $pstart, 'N.C.', '<a href="'.$purl.'">'.$pstr.'</a>', $status];
             }
         }
 
@@ -169,7 +169,7 @@ class block_shop_products_renderer extends plugin_renderer_base {
                 }
                 $productline = '<a href="'.$purl.'" title="'.$p->reference.'">'.$pstr.'</a><br/>';
                 $productline .= '<span class="smalltext">'.$pstart.' - '.$pend.'</span>';
-                $producttable->data[] = array($productline, $status);
+                $producttable->data[] = [$productline, $status];
             } else {
                 if ($p->instanceid) {
                     $status = '<span class="cs-product-running">'.get_string('running', 'block_shop_products').'</span>';

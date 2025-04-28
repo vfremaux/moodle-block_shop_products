@@ -1,0 +1,50 @@
+{{!
+    This file is part of The Shop Product Block
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_shop_products/productevent
+
+    Template for displaying an event related to a product.
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template:
+    * undocumented @see block's renderer for reference
+}}
+<!-- productevent -->
+<div class="product-event">
+<div>
+    <div class="cs-product-bill">{{title}}</div>
+    <div class="cs-product-date">{{emissiondate}}</div>
+</div>
+
+<div>
+    <div class="cs-product-billitem">[{{code}}]</div>
+    <div class="cs-product-billitem">{{name}}</div>
+</div>
+
+<div>
+    <div class="cs-product-key">{{{quantitystr}}}: </div>
+    <div class="cs-product-value">{{quantity}}</div>
+</div>
+
+<div>
+    <div class="cs-product-key">{{{unitpricestr}}}: </div>
+    <div class="cs-product-value">{{unitcost}}</div>
+</div>
+</div>
+<!-- /productevent -->

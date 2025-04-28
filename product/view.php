@@ -15,13 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Product view.
+ * Products view.
  *
  * @package   block_shop_products
- * @category  blocks
  * @copyright 2013 Valery Fremaux (valery.fremaux@gmail.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @todo : templatize
  */
 
 require('../../../config.php');

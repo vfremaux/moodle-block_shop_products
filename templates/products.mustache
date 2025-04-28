@@ -1,0 +1,120 @@
+{{!
+    This file is part of The Shop Products Block
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_shop_products/products
+
+    Block template for displaying product list in a block
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template:
+    * products Array of product info
+}}
+<!-- products -->
+{{#noproducts}}
+{{{noproductsnotif}}}
+{{/noproducts}}
+
+{{#hasproducts}}
+<table width="100%" class="block-products">
+    <tr>
+        <th class="header">
+            {{{codestr}}}
+        </th>
+        <th class="header">
+            {{{namestr}}}
+        </th>
+        <th class="header">
+            {{{referencestr}}}
+        </th>
+        <th class="header">
+            {{{fromdatestr}}}
+        </th>
+        <th class="header">
+            {{{todate-str}}}
+        </th>
+        <th class="header">
+            {{{statusstr}}}
+        </th>
+    </tr>
+{{#products}}
+    <tr class="product-line">
+        <td>
+            {{#hasevents}}
+            <img src="{{{toggleiconurl}}}" id="toggle-icon-{{pid}}" class="product-toggle-handle">
+            {{/hasevents}}
+            {{code}}
+        </td>
+        <td>
+            {{name}}
+        </td>
+        <td>
+            <div class="cs-product-reference">{{reference}}</div>
+        </td>
+        <td>
+            {{fromdate}}
+        </td>
+        <td>
+            {{todate}}
+        </td>
+        <td>
+            {{{status}}}
+        </td>
+    </tr>
+{{#hasevents}}
+    <tr class="cs-row-hidden" id="product-events-{{pid}}">
+        <td colspan="6">
+            <table class="product-events" width="100%">
+                <tr>
+                    <th>
+                        {{eventtypestr}}
+                    </td>
+                    <th>
+                        {{eventdatestr}}
+                    </td>
+                </tr>
+                {{#events}}
+                <tr>
+                    <td>
+                        {{eventtype}}
+                    </td>
+                    <td>
+                        {{eventdate}}
+                    </td>
+                </tr>
+                {{/events}}
+            </table>
+        </td>
+    </tr>
+{{/hasevents}}
+{{#hasrecordeddata}}
+    <tr class="cs-row-hidden" id="product-events-{{pid}}">
+        <td colspan="6">
+        </td>
+    </tr>
+{{/hasrecordeddata}}
+<tr class="cs-row-hidden" id="product-controls-{{pid}}">
+    <td colspan="6" class="product-controls">
+        <a href="{{{viewdetailsurl}}}">{{viewdetailsstr}}</a> {{{controls}}}
+    </td>
+</tr>
+{{/products}}
+</table>
+{{/hasproducts}}
+
+<!-- /products -->
